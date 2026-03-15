@@ -1,5 +1,6 @@
 package com.projetoqualis_cindy.qualis_api;
 
+import com.projetoqualis_cindy.qualis_api.exception.AreaNotFoundException;
 import com.projetoqualis_cindy.qualis_api.exception.PeriodicoNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +29,13 @@ public class PeriodicoService {
     }
 
     public List<Periodico> buscarPorArea(String area) {
-        return repository.findByAreaAvaliacao(area);
+        List<Periodico> resultado = repository.findByAreaAvaliacao(area);
+        if (resultado.isEmpty()) {
+            throw new AreaNotFoundException(
+                    "Área de avaliação '" + area + "não encontrada"
+            );
+        }
+        return resultado;
     }
     public List<Periodico> buscarPorEstrato(String estrato) {
         return repository.findByEstrato(estrato);
