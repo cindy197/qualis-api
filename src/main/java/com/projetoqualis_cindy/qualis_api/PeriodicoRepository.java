@@ -16,6 +16,11 @@ public interface PeriodicoRepository extends JpaRepository<Periodico, Long> {
     List<Periodico> findByEstrato(String estrato);
     List<Periodico> findByAreaAvaliacaoAndEstrato(String area, String estrato);
 
-    @Query("SELECT p.estrato, COUNT(p) FROM Periodico p WHERE p.areaAvaliacao = :area GROUP BY p.estrato")
+    @Query("""
+    SELECT p.estrato, COUNT(p)
+    FROM Periodico p
+    WHERE p.areaAvaliacao = :area
+    GROUP BY p.estrato
+    """)
     List<Object[]> contarPorEstratoDaArea(@Param("area") String area);
 }
