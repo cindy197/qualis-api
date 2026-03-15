@@ -47,7 +47,13 @@ public class PeriodicoService {
         return resultado;
     }
     public List<Periodico> buscarPorAreaEstrato(String area, String estrato) {
-        return repository.findByAreaAvaliacaoAndEstrato(area, estrato);
+        List<Periodico> resultado = repository.findByAreaAvaliacaoAndEstrato(area, estrato);
+        if (resultado.isEmpty()) {
+            throw new PeriodicoNotFoundException(
+                    "Nenhum periódico encontrado para a área '" + area + "' com estrato '" + estrato + "'"
+            );
+        }
+        return resultado;
     }
     public List<EstatisticaEstrato> distribuicaoPorEstrato(String area){
         List<String> areas = repository.findDistinctAreas();
