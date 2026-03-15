@@ -1,10 +1,13 @@
 package com.projetoqualis_cindy.qualis_api;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
 @Data
+@JsonPropertyOrder({"ISSN", "Título", "Área de Avaliação", "Estrato"})
 
 public class Periodico {
     @Id
@@ -12,8 +15,12 @@ public class Periodico {
 
     private Long id;
 
+    @JsonProperty("ISSN")
     private String issn;
+    @JsonProperty("Título")
     private String titulo;
+    @JsonProperty("Area de Avaliação")
     private String areaAvaliacao;
+    @JsonProperty("Estrato")
     private String estrato;
 }

@@ -9,4 +9,5 @@ public interface PeriodicoRepository extends JpaRepository<Periodico, Long> {
     @Quary("SELECT DISTINCT p.areaAvaliacao FROM Periodico p")
     List<String> findDistinctAreas();
     List<Periodico> findByAreaAvaliacao(String area);
+    List<Periodico> findByAreaAvaliacaoAndEstrato(String area, String estrato);
 }
