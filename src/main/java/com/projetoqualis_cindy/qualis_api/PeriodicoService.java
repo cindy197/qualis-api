@@ -1,11 +1,11 @@
 package com.projetoqualis_cindy.qualis_api;
 
+import com.projetoqualis_cindy.qualis_api.exception.PeriodicoNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
 
 @Service
 public class PeriodicoService {
@@ -14,7 +14,9 @@ public class PeriodicoService {
         this.repository = repository;
     }
     public Periodico buscarPorIssn(String issn) {
-        return repository.findByIssn(issn).orElse(null);
+
+        return repository.findByIssn(issn)
+                .orElseThrow(()-> new PeriodicoNotFoundException("ISSN não encontrado"));
     }
     public List<Periodico> buscarPorTitulo(String titulo) {
         return repository.findByTituloContainingIgnoreCase(titulo);
