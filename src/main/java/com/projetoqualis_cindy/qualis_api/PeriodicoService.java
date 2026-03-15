@@ -49,5 +49,8 @@ public class PeriodicoService {
 
         return resultado;
     }
+    public List<String> listarAreas() {
+        return repository.findDistinctAreas();
+    }
 
 }

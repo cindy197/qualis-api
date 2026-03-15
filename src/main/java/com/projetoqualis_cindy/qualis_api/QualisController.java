@@ -48,5 +48,10 @@ public class QualisController {
     public List<EstatisticaEstrato> distribuicao(@RequestParam String area) {
         return service.distribuicaoPorEstrato(area);
     }
+
+    @GetMapping("/areas")
+    public List<String> listarAreas() {
+        return service.listarAreas();
+    }
 }
 
