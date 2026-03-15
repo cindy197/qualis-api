@@ -19,8 +19,14 @@ public class PeriodicoService {
                 .orElseThrow(()-> new PeriodicoNotFoundException("ISSN não encontrado"));
     }
     public List<Periodico> buscarPorTitulo(String titulo) {
-        return repository.findByTituloContainingIgnoreCase(titulo);
+        List<Periodico> resultado = repository.findByTituloContainingIgnoreCase(titulo);
+        if (resultado.isEmpty()) {
+            throw new PeriodicoNotFoundException(
+                    "Nenhum periódico encontrado com o título contendo '" + titulo + "'");
+        }
+        return resultado;
     }
+
     public List<Periodico> buscarPorArea(String area) {
         return repository.findByAreaAvaliacao(area);
     }
