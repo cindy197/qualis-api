@@ -114,6 +114,14 @@ main {
 .cabecalho-resultados .titulo-card {
     font-size: 14px;
     letter-spacing: 0.05em;
+    margin-bottom: 0px;
+}
+
+.cabecalho-grafico {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
 }
 
 
