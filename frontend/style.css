@@ -57,15 +57,18 @@ main {
     letter-spacing: 0.07em;
 }
 
-.linha-card {
+.linha-input {
     display: flex;
+    flex-wrap: nowrap;
     gap: 8px;
     align-items: center;
 }
 
+
 .linha-input input,
 .linha-input select {
     flex: 1;
+    min-width: 0;
     padding: 9px 12px;
     border: 1px solid #d0d0c8;
     border-radius: 8px;
@@ -107,10 +110,12 @@ main {
     background-color: #fafaf7;
 }
 
-.cabecalho-resultados span {
+
+.cabecalho-resultados .titulo-card {
     font-size: 14px;
-    font-weight: 500;
+    letter-spacing: 0.05em;
 }
+
 
 .badge {
     background-color: #1a6bb515;
@@ -250,3 +255,4 @@ tr:hover td {
     color: #fff;
     font-weight: 500;
 }
+
