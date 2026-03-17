@@ -300,5 +300,16 @@ document.getElementById('input-titulo').addEventListener('keydown', e => {
     if (e.key === 'Enter') buscarPorTitulo();
 });
 
+// Mascaras de validação
+document.getElementById('input-issn').addEventListener('input', function (e) {
+    let value = e.target.value;
+    value = value.replace(/\D/g, '');
+    value = value.substring(0, 8);
+    if (value.length > 4) {
+        value = value.slice(0, 4) + '-' + value.slice(4);
+    }
+    e.target.value = value;
+});
+
 // Inicia carregando as áreas quando a página carregar
 carregarAreas();
