@@ -50,6 +50,7 @@ async function carregarAreas() {
 
     const selectArea = document.getElementById('select-area');
     const selectAreaGrafico = document.getElementById('select-area-grafico');
+    const selectAreaFiltro = document.getElementById('select-area-filtro');
 
     areas.forEach(area => {
         const opcao = document.createElement('option');
@@ -58,6 +59,7 @@ async function carregarAreas() {
 
         selectArea.appendChild(opcao);
         selectAreaGrafico.appendChild(opcao.cloneNode(true));
+        selectAreaFiltro.appendChild(opcao.cloneNode(true));
     });
 }
 
@@ -264,13 +266,31 @@ async function buscarDistribuicao() {
             '<p class="estado-vazio" style="color: #c0504a;">Erro ao conectar com a API.</p>';
     }
 }
+async function buscarPorFiltro() {
+    const area = document.getElementById('select-area-filtro').value;
+    const estrato = document.getElementById('select-estrato-filtro').value;
+    if (!area || !estrato) return;
 
+    mostrarCarregando();
+    try {
+        const resposta = await fetch(`${API}/filtro?area=${encodeURIComponent(area)}&estrato=${encodeURIComponent(estrato)}`);
+        if (!resposta.ok) {
+            const erro = await resposta.json();
+            mostrarErro(erro.message);
+            return;
+        }
+        renderizarTabela(await resposta.json());
+    } catch (e) {
+        mostrarErro('Erro ao conectar com a API. Verifique se o servidor está rodando.');
+    }
+}
 // Conecta os botões às funções
 document.getElementById('btn-issn').addEventListener('click', buscarPorIssn);
 document.getElementById('btn-titulo').addEventListener('click', buscarPorTitulo);
 document.getElementById('btn-area').addEventListener('click', buscarPorArea);
 document.getElementById('btn-estrato').addEventListener('click', buscarPorEstrato);
 document.getElementById('btn-grafico').addEventListener('click', buscarDistribuicao);
+document.getElementById('btn-filtro').addEventListener('click', buscarPorFiltro);
 
 // Permite buscar com Enter nos campos de texto
 document.getElementById('input-issn').addEventListener('keydown', e => {
