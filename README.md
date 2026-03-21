@@ -16,14 +16,14 @@ Sistema web fullstack com **API REST** para consulta da classificação QUALIS d
 
 **Linux/Mac:**
 ```bash
-git clone https://github.com/seu-usuario/qualis-api.git
+git clone https://github.com/cindy197/qualis-api.git
 cd qualis-api
 ./mvnw spring-boot:run
 ```
 
 **Windows:**
 ```bash
-git clone https://github.com/seu-usuario/qualis-api.git
+git clone https://github.com/cindy197/qualis-api.git
 cd qualis-api
 mvnw.cmd spring-boot:run
 ```
